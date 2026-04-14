@@ -1,7 +1,20 @@
 package main
 
-import simple_connection "go.mod/feature_postgres"
+import (
+	"context"
+
+	simple_connection "go.mod/feature_postgres/simple_connection"
+	"go.mod/feature_postgres/simple_sql"
+)
 
 func main() {
-	simple_connection.CheckConnection()
+	ctx := context.Background()
+
+	conn, err := simple_connection.CheckConnection(ctx)
+	if err != nil {
+		panic(err)
+	}
+	defer conn.Close(ctx)
+
+	simple_sql.CreateTable(conn, ctx)
 }
