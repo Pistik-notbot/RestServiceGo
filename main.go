@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 
 	simple_connection "go.mod/feature_postgres/simple_connection"
 	"go.mod/feature_postgres/simple_sql"
@@ -16,5 +17,9 @@ func main() {
 	}
 	defer conn.Close(ctx)
 
-	simple_sql.CreateTable(conn, ctx)
+	if err := simple_sql.CreateTable(conn, ctx); err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Таблица создана успешно")
 }
