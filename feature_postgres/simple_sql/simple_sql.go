@@ -6,13 +6,21 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-func CreateTable(conn *pgx.Conn, ctx context.Context) {
+func CreateTable(conn *pgx.Conn, ctx context.Context) error {
 	sqlQuery := `
 	CREATE TABLE IF NOT EXISTS tasks (
 		id SERIAL PRIMARY KEY,
-		name VARCHAR(255) NOT NULL
+		title VARCHAR(200) NOT NULL,
+		description VARCHAR(1000) NOT NULL,
+		completed BOOLEAN NOT NULL,
+		created_at TIMESTAMP NOT NULL,
+		compeleted_at TIMESTAMP
 	);
 	`
-	conn.Exec(ctx, sqlQuery)
+	_, err := conn.Exec(ctx, sqlQuery)
+	if err != nil {
+		return err
+	}
 
+	return nil
 }
