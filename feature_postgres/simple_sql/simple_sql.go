@@ -18,9 +18,6 @@ func CreateTable(conn *pgx.Conn, ctx context.Context) error {
 	);
 	`
 	_, err := conn.Exec(ctx, sqlQuery)
-	if err != nil {
-		return err
-	}
 
-	return nil
+	return err
 }

@@ -21,5 +21,9 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("Таблица создана успешно")
+	if err := simple_sql.InsertTask(conn, ctx); err != nil {
+		panic(err)
+	}
+
+	fmt.Println("succeed")
 }
