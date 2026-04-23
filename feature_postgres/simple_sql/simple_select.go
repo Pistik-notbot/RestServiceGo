@@ -31,7 +31,7 @@ func SelectRows(conn *pgx.Conn, ctx context.Context) error {
 		var completed_at time.Time
 
 		err := rows.Scan(
-			&idm
+			&id,
 			&title,
 			&description,
 			&completed,
@@ -39,7 +39,7 @@ func SelectRows(conn *pgx.Conn, ctx context.Context) error {
 			&completed_at,
 		)
 
-		if err!=nil{
+		if err != nil {
 			return err
 		}
 		fmt.Println(id, title, description, completed, created_at, completed_at)
