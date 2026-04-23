@@ -25,5 +25,9 @@ func main() {
 		panic(err)
 	}
 
+	if err := simple_sql.UpdateTask(conn, ctx); err != nil {
+		panic(err)
+	}
+
 	fmt.Println("succeed")
 }
