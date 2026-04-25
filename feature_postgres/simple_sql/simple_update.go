@@ -9,7 +9,7 @@ import (
 func UpdateTask(conn *pgx.Conn, ctx context.Context) error {
 	sqlQuery := `
 	Update tasks
-	Set completed = true, compeleted_at = now()
+	Set completed = true, completed_at = now()
 	Where id = 1;
 	`
 	_, err := conn.Exec(ctx, sqlQuery)

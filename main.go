@@ -17,15 +17,8 @@ func main() {
 	}
 	defer conn.Close(ctx)
 
-	if err := simple_sql.CreateTable(conn, ctx); err != nil {
-		panic(err)
-	}
-
-	if err := simple_sql.InsertTask(conn, ctx); err != nil {
-		panic(err)
-	}
-
-	if err := simple_sql.UpdateTask(conn, ctx); err != nil {
+	_, err = simple_sql.SelectRows(conn, ctx)
+	if err != nil {
 		panic(err)
 	}
 
