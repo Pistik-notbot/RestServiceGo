@@ -17,10 +17,22 @@ func main() {
 	}
 	defer conn.Close(ctx)
 
-	_, err = simple_sql.SelectRows(conn, ctx)
+	tasks, err := simple_sql.SelectRows(conn, ctx)
 	if err != nil {
 		panic(err)
 	}
 
+	task := tasks[0]
+	task.Completed = true
+
+	err = simple_sql.UpdateTask(conn, ctx, task)
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = simple_sql.SelectRows(conn, ctx)
+	if err != nil {
+		panic(err)
+	}
 	fmt.Println("succeed")
 }
