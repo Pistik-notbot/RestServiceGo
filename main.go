@@ -17,17 +17,22 @@ func main() {
 	}
 	defer conn.Close(ctx)
 
-	if err := simple_sql.CreateTable(conn, ctx); err != nil {
+	tasks, err := simple_sql.SelectRows(conn, ctx)
+	if err != nil {
 		panic(err)
 	}
 
-	if err := simple_sql.InsertTask(conn, ctx); err != nil {
+	task := tasks[0]
+	task.Completed = true
+
+	err = simple_sql.UpdateTask(conn, ctx, task)
+	if err != nil {
 		panic(err)
 	}
 
-	if err := simple_sql.UpdateTask(conn, ctx); err != nil {
+	_, err = simple_sql.SelectRows(conn, ctx)
+	if err != nil {
 		panic(err)
 	}
-
 	fmt.Println("succeed")
 }

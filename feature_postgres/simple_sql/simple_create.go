@@ -14,7 +14,7 @@ func CreateTable(conn *pgx.Conn, ctx context.Context) error {
 		description VARCHAR(1000) NOT NULL,
 		completed BOOLEAN NOT NULL,
 		created_at TIMESTAMP NOT NULL,
-		compeleted_at TIMESTAMP
+		completed_at TIMESTAMP
 	);
 	`
 	_, err := conn.Exec(ctx, sqlQuery)
