@@ -8,7 +8,7 @@ import (
 
 func CheckConnection(ctx context.Context) (*pgx.Conn, error) {
 
-	conn, err := pgx.Connect(ctx, "postgres://postgres:1234@localhost:5432/postgres")
+	conn, err := pgx.Connect(ctx, "CONN_STRING")
 	if err != nil {
 		return nil, err
 	}
