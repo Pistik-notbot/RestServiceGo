@@ -6,4 +6,4 @@ COPY . .
 
 RUN go mod tidy
 
-CMD go run main.go
+CMD ["make", "service-run"]

@@ -9,7 +9,7 @@ import (
 func main() {
 	if err := http_server.StartHTTPServer(); err != nil {
 		fmt.Printf("Ошибка при запуске HTTP сервера: %v\n", err)
-	} else {
-		fmt.Println("HTTP сервер успешно запущен на порту 5050")
 	}
+	fmt.Println("HTTP сервер успешно запущен на порту 5050")
+
 }
